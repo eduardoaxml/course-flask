@@ -1,2 +1,4 @@
 /env
-__pycache
+/__pycache
+.gitattributes
+.DS_Store
