@@ -2,3 +2,4 @@
 /__pycache
 .gitattributes
 .DS_Store
+/static/.DS_Store
