@@ -10,7 +10,9 @@ Bienvenido
 
 {% block content %}
     {% if user_ip %}
-    <h1>Hello Pablo, your IP is: {{user_ip}}</h1>
+    {% if username %}
+    <h1>Hello {{username | capitalize }}</h1>
+    {% endif %}
     <div class="container">
         <form action="{{ url_for('hello')}}" method="POST">
             <!--{{ login_form.username }}
