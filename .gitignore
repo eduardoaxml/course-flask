@@ -1,5 +1,6 @@
 /env
 /__pycache
+/__pycache__
 .gitattributes
 .DS_Store
 /static/.DS_Store
