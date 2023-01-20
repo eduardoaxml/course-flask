@@ -11,15 +11,12 @@ class MainTest(TestCase):
 
         return app
 
-    # if app exists
     def test_app_exists(self):
         self.assertIsNotNone(current_app)
 
-    #if app is in test mode
     def test_app_in_test_mode(self):
         self.assertTrue(current_app.config['TESTING'])
 
-    # if index redirect to hello
     def test_index_redirects(self):
         response = self.client.get(url_for('index'))
 
@@ -31,14 +28,10 @@ class MainTest(TestCase):
         self.assert200(response)
 
     def test_hello_post(self):
-        fake_form = {
-            'username': 'fake',
-            'password': 'fake-password'
-        }
-        response = self.client.post(url_for('hello'), data=fake_form)
+        response = self.client.post(url_for('hello'))
 
-        self.assertRedirects(response, url_for('index'))
-    
+        self.assertTrue(response.status_code, 405)
+
     def test_auth_blueprint_exists(self):
         self.assertIn('auth', self.app.blueprints)
 
@@ -51,3 +44,12 @@ class MainTest(TestCase):
         self.client.get(url_for('auth.login'))
 
         self.assertTemplateUsed('login.html')
+
+    def test_auth_login_post(self):
+        fake_form = {
+            'username': 'fake',
+            'password': 'fake-password'
+        }
+
+        response = self.client.post(url_for('auth.login'), data=fake_form)
+        self.assertRedirects(response, url_for('index'))
