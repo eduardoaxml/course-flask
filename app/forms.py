@@ -4,6 +4,14 @@ from wtforms.validators import DataRequired
 
 
 class LoginForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired()])
+    username = StringField('Nombre de usuario', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
-    submit = SubmitField('Send')
+    submit = SubmitField('Enviar')
+
+
+class TodoForm(FlaskForm):
+    description = StringField('Descripción', validators=[DataRequired()])
+    submit = SubmitField('Crear')
+
+class DeleteTodoForm(FlaskForm):
+    submit = SubmitField('Borrar')
